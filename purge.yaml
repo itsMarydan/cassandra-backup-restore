@@ -1,0 +1,8 @@
+apiVersion: medusa.k8ssandra.io/v1alpha1
+kind: MedusaTask
+metadata:
+  name: purge-backups-1
+  namespace: k8ssandra-operator
+spec:
+  cassandraDatacenter: dc1
+  operation: purge

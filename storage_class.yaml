@@ -1,0 +1,1 @@
+kubectl get k8cs -n k8ssandra-operator
