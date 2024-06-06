@@ -21,11 +21,12 @@ helm repo update
 helm install k8ssandra-operator k8ssandra/k8ssandra-operator -n k8ssandra-operator --create-namespace
 ```
 ## If you want to use the operator more globally install it with the global scope enabled
-
+```
 helm install k8ssandra-operator k8ssandra/k8ssandra-operator -n k8ssandra-operator \ 
      --set global.clusterScoped=true --create-namespace
+```
 
-## Check to see the operatore was installed 
+## Check to see the operator was installed 
 ```
 kubectl get pods -n k8ssandra-operator
 ```
@@ -95,7 +96,7 @@ kubectl apply -f backup.yaml
 
 ```
 
-## WAIT Till backup is finished 
+## Wait until backup is finished 
 
 ```
 kubectl get MedusaBackupJob -n k8ssandra-operator -w
@@ -108,7 +109,7 @@ kubeclt get MedusaBackupJob -n k8ssandra-operator medusa-backup1 -oyaml
 ```
 
 
-After Validating backup job got all your nodes, in our case a single node. We will drop the keyspace that contains our sample data
+After validating backup job got all your nodes, in our case a single node, we will drop the keyspace that contains our sample data
 
 ## Delete data that was loaded for testing 
 
@@ -131,7 +132,7 @@ cqlsh -u demo-superuser -p pwd
 drop keyspace united_states; 
 
 ```
-Validatee
+### Validate
 
 ```
 describe keyspaces
@@ -146,18 +147,17 @@ Now that we have lost our data, let us restore it
 kubectl apply -f restore.yaml
 ```
 
-
-## WAIT Till restore is finished 
+until restore is finished 
 
 ```
 kubectl get MedusaRestoreJob -n k8ssandra-operator -w
 ```
 
-Once the finish Column is set, ensure your cluster node is backup and running.
+Once the finish Column is set, ensure your cluster node is up and running.
 
 
 ```
-kubectk get pods -n k8ssandra-operator 
+kubectl get pods -n k8ssandra-operator 
 ```
 
 
